@@ -1,0 +1,16 @@
+name: "firstwebsite"
+title: "Titel der Seite"
+description: |
+  my first website
+output_dir: "docs"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - text: "Noch was"
+      href: andere.html
+    - text: "altes.html"
+      href: altes.html
+output: distill::distill_article

@@ -1,0 +1,21 @@
+---
+title: "dritte Seite"
+description: |
+  Hier steht was anderes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+hier auch
+
+```{r}
+library(palmerpenguins)
+library(tidyverse)
+```
+
+```{r}
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + geom_point()
+```
+

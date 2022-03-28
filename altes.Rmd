@@ -1,0 +1,101 @@
+---
+title: "dritte Seite"
+description: |
+  Hier steht was anderes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+
+```{r packages}
+library(tidyverse)
+library(palmerpenguins)
+library(knitr)
+library(kableExtra)
+library(arsenal)
+library(sjPlot)
+```
+
+# First Header
+
+Some Text
+
+## Second Header
+
+```{r loadData}
+data("penguins")
+Dat <- penguins
+```
+
+```{r, echo = TRUE}
+namen <- names(Dat)
+```
+
+we can use the output: `r namen`  
+*Or* like **this**:
+
+  * `r namen[1]`
+  * `r namen[2]`
+  
+```{r}
+head(penguins)
+zahlen <- penguins$bill_length_mm
+```
+  
+```{r}
+sum(zahlen, na.rm = TRUE)
+
+```
+  
+## explore penguins
+```{r}
+penguins[1:10, 1:4]
+```
+
+# Figure
+
+We want to include a figure. Next we look at penguins. Please see figure \@ref(fig:penguins1).
+
+```{r penguins1, fig.cap = "This is a figure of penguins."}
+include_graphics("palmerpenguins.png")
+```
+
+# Second Figure
+
+```{r penguins2, fig.cap="These are the bill dimension"}
+include_graphics("culmen_depth.png")
+```
+
+```{r penguins3, fig.cap="Wieder Pinguine"}
+include_graphics("palmerpenguins.png")
+```
+Hier haben wir bilder von Pinguinen \@ref(fig:penguins1), \@ref(fig:penguins2) and \@ref(fig:penguins3).
+
+hier meine tab \@ref(tab:meinetab)
+```{r meinetab}
+penguins[1:10, 1:4] %>% kable(caption = "Caption") %>% kable_styling(bootstrap_options = "hover") %>% scroll_box(height = "10cm")
+```
+## Table
+
+```{r, results="asis"}
+tab <- tableby(species~., data = penguins, test = FALSE)
+summary(tab)
+```
+
+## model result
+calculate a model
+
+```{r}
+
+fit <- lm(flipper_length_mm ~ bill_length_mm + body_mass_g + sex,
+          data = penguins)
+tab_model(fit)
+
+```
+
+```{r}
+sessionInfo()
+```
+
